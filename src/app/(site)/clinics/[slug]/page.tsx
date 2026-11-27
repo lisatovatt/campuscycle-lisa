@@ -175,7 +175,7 @@ export default async function ClinicPage({ params }: Props) {
                 clinic={clinic.slug}
                 slots={slots}
                 requestId={randomUUID()}
-                repairs={repairs.map(({ id, name, price }) => ({ id, name, price }))}
+                repairs={repairs.map(({ id, name, price, description }) => ({ id, name, price, description }))}
                 member={member && { name: member.name ?? '', email: member.email }}
               />
             )}
