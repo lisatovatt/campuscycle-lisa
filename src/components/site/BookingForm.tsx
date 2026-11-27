@@ -40,7 +40,7 @@ type BookingFormProps = {
   // A random code the clinic page makes for this one form (see requestId in src/collections/Bookings.ts).
   requestId: string
   // The clinic's repairs, the same records as the price list above the form. Used by W6 (below).
-  repairs: Pick<Repair, 'id' | 'name' | 'price'>[]
+  repairs: Pick<Repair, 'id' | 'name' | 'price' | 'description'>[]
   // The member who is logged in, with the optional members' area on (src/lib/membersArea.ts): their
   // name ('' when their account has none) and their e-mail address, and nothing else. null when the
   // area is off or nobody is logged in, and then the form is the ordinary one.
@@ -94,7 +94,10 @@ function RepairChoice({ repairs }: { repairs: BookingFormProps['repairs'] }) {
          return (
            <label key={repair.id} className="flex min-h-11 items-center gap-3">
              <input type="checkbox" name="repairs" value={repair.id} defaultChecked={sent.repairs?.includes(String(repair.id))} className="size-5 accent-ink" />
-             {label}
+              <span className="grid">
+                <span>{label}</span>
+                {repair.description && <span className="text-sm text-ink-soft">{repair.description}</span>}
+              </span>
            </label>
          )
        })}
